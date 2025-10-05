@@ -31,6 +31,7 @@ on:
           - all
           - chromium
           - firefox
+          - webkit
       headed:
         description: 'Run in headed mode'
         required: false

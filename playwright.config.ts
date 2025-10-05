@@ -112,6 +112,38 @@ export default defineConfig({
         acceptDownloads: true,
       },
     },
+    
+    {
+      name: 'webkit',
+      timeout: TIMEOUTS.ELEMENT_WAIT * 4, // 40 seconds for WebKit
+      use: { 
+        // Minimal WebKit configuration to avoid protocol errors
+        ...devices['Desktop Safari'],
+        
+        // Override global settings that cause WebKit issues
+        screenshot: 'only-on-failure',
+        video: 'retain-on-failure',
+        
+        // WebKit-specific timeout settings
+        actionTimeout: TIMEOUTS.ELEMENT_WAIT * 1.5, // 15 seconds for actions
+        navigationTimeout: TIMEOUTS.NAVIGATION * 1.5, // 45 seconds for navigation
+        
+        // Minimal WebKit launch options
+        launchOptions: {
+          args: [
+            '--no-sandbox',
+            '--disable-web-security',
+            '--disable-translate',
+            '--lang=en-US',
+          ],
+        },
+        
+        // Basic WebKit settings
+        ignoreHTTPSErrors: true,
+        acceptDownloads: true,
+        javaScriptEnabled: true,
+      },
+    },
   ],
   
   // Web server configuration for local development

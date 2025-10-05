@@ -111,6 +111,8 @@ npm run test:chrome
 # Firefox
 npm run test:firefox
 
+# Safari
+npm run test:webkit
 
 
 #### Test Execution
@@ -160,3 +162,5 @@ The framework uses the OrangeHRM demo site as the default test environment. You 
 export BASE_URL="https://your-custom-site.com"
 npm test
 ```
+# Safari/WebKit
+npm run test:webkit
