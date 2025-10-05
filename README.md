@@ -4,12 +4,10 @@ A modern, comprehensive E2E test automation framework built with Playwright and 
 
 ## ✨ Features
 
-- **Cross-browser/platform support** - Chrome, Firefox, Safari, Edge, and mobile devices
+- **Cross-browser/platform support** - Chrome, Firefox, Safari
 - **Modular design** - Page Object Model with reusable components
 - **CI/CD ready** - GitHub Actions integration
 - **Comprehensive testing** - UI and regression testing
-- **Data generation** - Automated test data creation
-- **Configuration management** - Environment-specific configurations
 
 ## 🏗️ Project Structure
 
@@ -83,11 +81,6 @@ npm test
 # Run tests in headed mode
 npm run test:headed
 
-# Run tests in debug mode
-npm run test:debug
-
-# Run tests with UI
-npm run test:ui
 ```
 
 #### Test Types
@@ -146,20 +139,3 @@ npx playwright show-report report/
 - **Videos** - Recorded test runs for debugging
 - **Traces** - Step-by-step execution details
 - **Filtering** - Search and filter by test status, tags, etc.
-
-## 🌐 Test Environment
-
-This framework is configured to test the **OrangeHRM Demo Site** at [https://opensource-demo.orangehrmlive.com](https://opensource-demo.orangehrmlive.com).
-
-### Default Credentials
-- **Admin**: `Admin` / `admin123` (configurable via `ADMIN_USERNAME` and `ADMIN_PASSWORD` environment variables)
-
-### Environment Configuration
-The framework uses the OrangeHRM demo site as the default test environment. You can override this by setting the `BASE_URL` environment variable:
-
-```bash
-export BASE_URL="https://your-custom-site.com"
-npm test
-```
-# Safari/WebKit
-npm run test:webkit
