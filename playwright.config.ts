@@ -54,6 +54,15 @@ export default defineConfig({
     
     // Viewport
     viewport: { width: UI.VIEWPORT.WIDTH, height: UI.VIEWPORT.HEIGHT },
+    
+    // Force English language to prevent auto-translation
+    locale: 'en-US',
+    timezoneId: 'America/New_York',
+    
+    // Additional headers to prevent translation
+    extraHTTPHeaders: {
+      'Accept-Language': 'en-US,en;q=0.9',
+    },
   },
   
   // Configure projects for major browsers
@@ -61,7 +70,19 @@ export default defineConfig({
     // Desktop browsers
     {
       name: 'chromium',
-      use: { ...devices['Desktop Chrome'] },
+      use: { 
+        ...devices['Desktop Chrome'],
+        // Force English language in Chromium
+        launchOptions: {
+          args: [
+            '--lang=en-US',
+            '--disable-translate',
+            '--disable-background-timer-throttling',
+            '--disable-backgrounding-occluded-windows',
+            '--disable-renderer-backgrounding',
+          ],
+        },
+      },
     },
     
     {
@@ -81,6 +102,8 @@ export default defineConfig({
             '--disable-gpu',
             '--disable-web-security',
             '--disable-features=VizDisplayCompositor',
+            '--lang=en-US',
+            '--disable-translate',
           ],
         },
         

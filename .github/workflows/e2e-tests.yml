@@ -41,6 +41,10 @@ env:
   NODE_VERSION: '18'
   PLAYWRIGHT_BROWSERS_PATH: 0
   BASE_URL: 'https://opensource-demo.orangehrmlive.com'
+  # Force English language in CI environment
+  LANG: 'en_US.UTF-8'
+  LC_ALL: 'en_US.UTF-8'
+  LANGUAGE: 'en_US:en'
 
 jobs:
   test:
@@ -48,6 +52,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      
+      - name: Set up English locale
+        run: |
+          sudo locale-gen en_US.UTF-8
+          sudo update-locale LANG=en_US.UTF-8
       
       - uses: actions/setup-node@v4
         with:
