@@ -2,20 +2,19 @@
  * Test data for various test scenarios
  */
 
-import { TIMEOUTS, TEST_DATA } from '../utils/constants';
 
 /**
  * Get admin username from environment or default
  */
 function getAdminUsername(): string {
-  return process.env.ADMIN_USERNAME || TEST_DATA.DEFAULT_ADMIN_USERNAME;
+  return process.env.ADMIN_USERNAME || 'Admin';
 }
 
 /**
  * Get admin password from environment or default
  */
 function getAdminPassword(): string {
-  return process.env.ADMIN_PASSWORD || TEST_DATA.DEFAULT_ADMIN_PASSWORD;
+  return process.env.ADMIN_PASSWORD || 'admin123';
 }
 
 export class TestData {
@@ -65,7 +64,7 @@ export class TestData {
       expectedError: 'Required',
     },
     excessivelyLongUsername: {
-      username: 'a'.repeat(TEST_DATA.LONG_USERNAME_LENGTH),
+      username: 'a'.repeat(1000),
       password: getAdminPassword(),
       expectedError: 'Invalid credentials',
     },
@@ -75,17 +74,17 @@ export class TestData {
       expectedError: 'Required',
     },
     xssAttempt: {
-      username: TEST_DATA.XSS_ATTEMPT,
+      username: '<script>alert("xss")</script>',
       password: getAdminPassword(),
       expectedError: 'Invalid credentials',
     },
     sqlInjection: {
-      username: `${getAdminUsername()}${TEST_DATA.SQL_INJECTION_SUFFIX}`,
+      username: `${getAdminUsername()}; DROP TABLE users; --`,
       password: getAdminPassword(),
       expectedError: 'Invalid credentials',
     },
     specialCharsUsername: {
-      username: `${getAdminUsername()}${TEST_DATA.SPECIAL_CHARS}`,
+      username: `${getAdminUsername()}@#$%^&*()`,
       password: getAdminPassword(),
       expectedError: 'Invalid credentials',
     },
@@ -101,7 +100,7 @@ export class TestData {
       rememberMe: true,
     },
     sessionTimeout: {
-      timeoutDuration: TIMEOUTS.SESSION_TIMEOUT,
+      timeoutDuration: 30 * 60 * 1000, // 30 minutes
       username: getAdminUsername(),
       password: getAdminPassword(),
     },
@@ -109,7 +108,7 @@ export class TestData {
       maxAttempts: 5,
       username: getAdminUsername(),
       password: 'wrongpassword',
-      lockoutDuration: TIMEOUTS.LOCKOUT_DURATION, // 15 minutes
+      lockoutDuration: 15 * 60 * 1000, // 15 minutes
     },
     urlAccessRestriction: {
       protectedUrls: [

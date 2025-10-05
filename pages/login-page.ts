@@ -13,8 +13,6 @@ export class LoginPage extends BasePage {
   private readonly errorMessage: Locator;
   private readonly fieldErrorMessage: Locator;
   private readonly loginForm: Locator;
-  private readonly logo: Locator;
-  private readonly socialLoginButtons: Locator;
 
   constructor(page: Page) {
     super(page);
@@ -27,8 +25,6 @@ export class LoginPage extends BasePage {
     this.errorMessage = page.locator('.oxd-alert-content-text');
     this.fieldErrorMessage = page.locator('.oxd-input-field-error-message');
     this.loginForm = page.locator('.orangehrm-login-form');
-    this.logo = page.locator('.orangehrm-login-branding img');
-    this.socialLoginButtons = page.locator('.orangehrm-login-social');
   }
 
   /**
@@ -130,58 +126,10 @@ export class LoginPage extends BasePage {
   }
 
   /**
-   * Get username field error message
-   */
-  async getUsernameFieldErrorMessage(): Promise<string> {
-    const usernameError = this.page.locator('input[name="username"] + .oxd-input-field-error-message');
-    if (await usernameError.isVisible()) {
-      return await usernameError.textContent() || '';
-    }
-    return '';
-  }
-
-  /**
-   * Get password field error message
-   */
-  async getPasswordFieldErrorMessage(): Promise<string> {
-    const passwordError = this.page.locator('input[name="password"] + .oxd-input-field-error-message');
-    if (await passwordError.isVisible()) {
-      return await passwordError.textContent() || '';
-    }
-    return '';
-  }
-
-  /**
-   * Check if username field has error
-   */
-  async isUsernameFieldErrorVisible(): Promise<boolean> {
-    const usernameError = this.page.locator('input[name="username"] + .oxd-input-field-error-message');
-    return await usernameError.isVisible();
-  }
-
-  /**
-   * Check if password field has error
-   */
-  async isPasswordFieldErrorVisible(): Promise<boolean> {
-    const passwordError = this.page.locator('input[name="password"] + .oxd-input-field-error-message');
-    return await passwordError.isVisible();
-  }
-
-  /**
    * Click forgot password link
    */
   async clickForgotPassword(): Promise<void> {
     await this.clickElement(this.forgotPasswordLink);
-  }
-
-  /**
-   * Wait for login form to be visible
-   */
-  async waitForLoginForm(): Promise<void> {
-    await this.waitForElement(this.loginForm);
-    await this.waitForElement(this.usernameInput);
-    await this.waitForElement(this.passwordInput);
-    await this.waitForElement(this.loginButton);
   }
 
   /**
@@ -279,83 +227,6 @@ export class LoginPage extends BasePage {
   async clearForm(): Promise<void> {
     await this.clearUsername();
     await this.clearPassword();
-  }
-
-  /**
-   * Check if logo is visible
-   */
-  async isLogoVisible(): Promise<boolean> {
-    return await this.isElementVisible(this.logo);
-  }
-
-  /**
-   * Check if forgot password link is visible
-   */
-  async isForgotPasswordVisible(): Promise<boolean> {
-    return await this.isElementVisible(this.forgotPasswordLink);
-  }
-
-  /**
-   * Check if social login buttons are visible
-   */
-  async areSocialLoginButtonsVisible(): Promise<boolean> {
-    return await this.isElementVisible(this.socialLoginButtons);
-  }
-
-  /**
-   * Validate form fields are required
-   */
-  async validateRequiredFields(): Promise<{ usernameRequired: boolean; passwordRequired: boolean }> {
-    const usernameRequired = await this.usernameInput.getAttribute('required') !== null;
-    const passwordRequired = await this.passwordInput.getAttribute('required') !== null;
-    
-    return { usernameRequired, passwordRequired };
-  }
-
-  /**
-   * Get form validation messages
-   */
-  async getFormValidationMessages(): Promise<string[]> {
-    const messages: string[] = [];
-    
-    // Check for HTML5 validation messages
-    const usernameValidation = await this.usernameInput.evaluate(el => (el as HTMLInputElement).validationMessage);
-    const passwordValidation = await this.passwordInput.evaluate(el => (el as HTMLInputElement).validationMessage);
-    
-    if (usernameValidation) messages.push(usernameValidation);
-    if (passwordValidation) messages.push(passwordValidation);
-    
-    return messages;
-  }
-
-  /**
-   * Check if page is loaded completely
-   */
-  async isPageLoaded(): Promise<boolean> {
-    return await this.isElementVisible(this.loginForm) && 
-           await this.isElementVisible(this.logo);
-  }
-
-  /**
-   * Wait for page to load completely
-   */
-  override async waitForPageLoad(): Promise<void> {
-    await this.waitForLoginForm();
-    await this.waitForElement(this.logo);
-  }
-
-  /**
-   * Take screenshot of login form
-   */
-  async takeLoginFormScreenshot(): Promise<void> {
-    await this.takeScreenshot('login-form');
-  }
-
-  /**
-   * Get page title
-   */
-  override async getPageTitle(): Promise<string> {
-    return await this.page.title();
   }
 
   /**

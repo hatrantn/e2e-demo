@@ -48,7 +48,7 @@ test.describe('Admin User Management Search Tests', () => {
       expect(hasNoRecords).toBe(true);
         
       // Verify "No Records Found" is displayed
-      const isDisplayed = await adminUserSearchPage.isNoRecordsFoundDisplayed();
+      const isDisplayed = await adminUserSearchPage.hasNoRecordsFound();
       expect(isDisplayed).toBe(true);
     });
 
@@ -63,7 +63,7 @@ test.describe('Admin User Management Search Tests', () => {
       expect(hasNoRecords).toBe(true);
       
       // Verify "No Records Found" is displayed
-      const isDisplayed = await adminUserSearchPage.isNoRecordsFoundDisplayed();
+      const isDisplayed = await adminUserSearchPage.hasNoRecordsFound();
       expect(isDisplayed).toBe(true);
     });
 
@@ -74,7 +74,7 @@ test.describe('Admin User Management Search Tests', () => {
       expect(hasNoRecords).toBe(true);
       
       // Verify "No Records Found" is displayed
-      const isDisplayed = await adminUserSearchPage.isNoRecordsFoundDisplayed();
+      const isDisplayed = await adminUserSearchPage.hasNoRecordsFound();
       expect(isDisplayed).toBe(true);
     });
 
@@ -83,7 +83,7 @@ test.describe('Admin User Management Search Tests', () => {
       expect(hasErrorToast).toBe(true); // Expect error toast to appear for whitespace-only input
         
       // Also verify we can get the error message
-      const errorMessage = await adminUserSearchPage.getErrorToastMessage();
+      const errorMessage = await adminUserSearchPage.getToastMessage();
       expect(errorMessage).toBeTruthy();
       expect(errorMessage.length).toBeGreaterThan(0);
     });
@@ -95,7 +95,7 @@ test.describe('Admin User Management Search Tests', () => {
       expect(hasNoRecords).toBe(true);
         
       // Verify "No Records Found" is displayed
-      const isDisplayed = await adminUserSearchPage.isNoRecordsFoundDisplayed();
+      const isDisplayed = await adminUserSearchPage.hasNoRecordsFound();
       expect(isDisplayed).toBe(true);
     });
 
@@ -106,7 +106,7 @@ test.describe('Admin User Management Search Tests', () => {
       expect(hasNoRecords).toBe(true);
         
       // Verify "No Records Found" is displayed
-      const isDisplayed = await adminUserSearchPage.isNoRecordsFoundDisplayed();
+      const isDisplayed = await adminUserSearchPage.hasNoRecordsFound();
       expect(isDisplayed).toBe(true);
     });
 
@@ -115,7 +115,7 @@ test.describe('Admin User Management Search Tests', () => {
       expect(hasNoRecords).toBe(true);
         
       // Verify "No Records Found" is displayed
-      const isDisplayed = await adminUserSearchPage.isNoRecordsFoundDisplayed();
+      const isDisplayed = await adminUserSearchPage.hasNoRecordsFound();
       expect(isDisplayed).toBe(true);
     });
 
@@ -256,7 +256,7 @@ test.describe('Admin User Management Search Tests', () => {
         userRole: 'ESS',
       });
       
-      const isDisplayed = await adminUserSearchPage.isNoRecordsFoundDisplayed();
+      const isDisplayed = await adminUserSearchPage.hasNoRecordsFound();
       expect(isDisplayed).toBe(true);
       
       // Verify toast message contains "No Records Found"

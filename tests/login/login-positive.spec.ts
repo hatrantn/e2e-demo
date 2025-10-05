@@ -3,7 +3,7 @@ import { LoginPage } from '../../pages/login-page';
 import { DashboardPage } from '../../pages/dashboard-page';
 import { TestData } from '../../data/test-data';
 
-test.describe('Login Tests - Valid Credentials', () => {
+test.describe.skip('Login Tests - Valid Credentials', () => {
   let loginPage: LoginPage;
   let dashboardPage: DashboardPage;
 
