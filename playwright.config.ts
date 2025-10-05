@@ -128,12 +128,9 @@ export default defineConfig({
         actionTimeout: TIMEOUTS.ELEMENT_WAIT * 1.5, // 15 seconds for actions
         navigationTimeout: TIMEOUTS.NAVIGATION * 1.5, // 45 seconds for navigation
         
-        // Minimal WebKit launch options
+        // Minimal WebKit launch options (WebKit has limited argument support)
         launchOptions: {
           args: [
-            '--no-sandbox',
-            '--disable-web-security',
-            '--disable-translate',
             '--lang=en-US',
           ],
         },
