@@ -51,7 +51,7 @@ export default defineConfig({
     {
       name: 'chromium',
       use: { 
-        ...devices['Desktop Chrome']
+        ...devices['Desktop Chrome'],
       },
     },
     
@@ -59,7 +59,7 @@ export default defineConfig({
       name: 'firefox',
       timeout: 50000, // 50 seconds for Firefox
       use: { 
-        ...devices['Desktop Firefox']
+        ...devices['Desktop Firefox'],
       },
     },
     
@@ -67,7 +67,7 @@ export default defineConfig({
       name: 'webkit',
       timeout: 40000, // 40 seconds for WebKit
       use: {
-        ...devices['Desktop Safari']
+        ...devices['Desktop Safari'],
       },
     },
   ],

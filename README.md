@@ -23,7 +23,6 @@ e2e-demo/
 │   └── admin-user-search-page.ts # Admin user search page
 ├── data/                   # Test data
 │   ├── test-data.ts        # Test data definitions
-│   └── search-test-data.ts # Search test data
 ├── utils/                  # Utilities and helpers
 │   └── config.ts           # Configuration utilities
 ├── tests/                  # Test files

@@ -99,11 +99,6 @@ export class TestData {
       password: getAdminPassword(),
       rememberMe: true,
     },
-    sessionTimeout: {
-      timeoutDuration: 30 * 60 * 1000, // 30 minutes
-      username: getAdminUsername(),
-      password: getAdminPassword(),
-    },
     tooManyAttempts: {
       maxAttempts: 5,
       username: getAdminUsername(),
@@ -142,97 +137,4 @@ export class TestData {
     },
   };
 
-  /**
-   * Expected dashboard elements after successful login
-   */
-  static readonly dashboardElements = {
-    quickLaunchCards: [
-      'Assign Leave',
-      'Leave List',
-      'Timesheets',
-      'Apply Leave',
-      'My Leave',
-      'My Timesheet',
-    ],
-    charts: [
-      'Employee Distribution by Subunit',
-      'Employee Distribution by Location',
-    ],
-    widgets: [
-      'Pending Leave Requests',
-      'Time at Work',
-      'My Actions',
-      'Buzz Latest Posts',
-    ],
-  };
-
-  /**
-   * Error messages for validation
-   */
-  static readonly errorMessages = {
-    invalidCredentials: 'Invalid credentials',
-    required: 'Required',
-    usernameRequired: 'Username is required',
-    passwordRequired: 'Password is required',
-    accountDisabled: 'Account disabled',
-    tooManyAttempts: 'Too many login attempts',
-    sessionExpired: 'Session expired',
-  };
-
-  /**
-   * Success messages
-   */
-  static readonly successMessages = {
-    loginSuccess: 'Welcome',
-    logoutSuccess: 'Login',
-    passwordChanged: 'Password changed successfully',
-  };
-
-  /**
-   * Get random valid credentials
-   */
-  static getRandomValidCredentials() {
-    const credentials = Object.values(this.validCredentials);
-    return credentials[Math.floor(Math.random() * credentials.length)];
-  }
-
-  /**
-   * Get random invalid credentials
-   */
-  static getRandomInvalidCredentials() {
-    const credentials = Object.values(this.invalidCredentials);
-    return credentials[Math.floor(Math.random() * credentials.length)];
-  }
-
-  /**
-   * Get random edge case credentials
-   */
-  static getRandomEdgeCaseCredentials() {
-    const credentials = Object.values(this.invalidCredentials);
-    return credentials[Math.floor(Math.random() * credentials.length)];
-  }
-
-  /**
-   * Generate test user data
-   */
-  static generateTestUser() {
-    return {
-      username: `testuser_${Date.now()}`,
-      password: 'Test123!',
-      firstName: 'Test',
-      lastName: 'User',
-      email: `testuser_${Date.now()}@example.com`,
-    };
-  }
-
-  /**
-   * Get test scenarios for comprehensive testing
-   */
-  static getTestScenarios() {
-    return {
-      positive: Object.values(this.validCredentials),
-      negative: Object.values(this.invalidCredentials),
-      edgeCases: Object.values(this.invalidCredentials),
-    };
-  }
 }
