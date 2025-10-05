@@ -3,7 +3,7 @@ import { LoginPage } from '../../pages/login-page';
 import { TestData } from '../../data/test-data';
 import { getBaseUrl } from '../../utils/config';
 
-test.describe.skip('Login Tests - Invalid Credentials', () => {
+test.describe('Login Tests - Invalid Credentials', () => {
   let loginPage: LoginPage;
 
   test.beforeEach(async ({ page }) => {
